@@ -36,6 +36,19 @@ Node *newNodeString(char *s)
 	n->val = p;
 	return n;
 }
+Node *newNodeList(List *l)
+{
+	Node *n;
+	List *p;
+	n = malloc(sizeof(Node));
+	p = malloc(sizeof(List));
+	p->length = l->length;
+	p->head = l->head;
+	p->tail = l->tail;
+	n->type = LIST;
+	n->val = p;
+	return n;
+}
 void NodePrint(Node *n)
 {
 	switch (n->type) {
@@ -47,6 +60,9 @@ void NodePrint(Node *n)
 			break;
 		case STRING:
 			printf("\"%s\"", (char *)(n->val));
+			break;
+		case LIST:
+			printf("LIST:length %d", ((List *)(n->val))->length);
 			break;
 		default:
 			break;
@@ -89,4 +105,61 @@ void ListPrint(List *l)
 		}
 	}
 	printf(")\n");
+}
+void ListRemove(List *l, Node *n)
+{
+	//ƒŠƒXƒgl ‚©‚çÅ‰‚ÉŒ©‚Â‚©‚Á‚½ n ‚ğ‚Æ‚è‚Ì‚¼‚­
+	int i;
+	Node *p;
+	if (l->length == 0) return;
+	p = l->head;
+	//æ“ª—v‘f‚Ì”äŠr
+	if (l->length == 1) {
+		if (p == n) {
+			l->length = 0;
+		}
+		return;
+	} else {
+		if (p == n) {
+			l->length = l->length - 1;
+			l->head = p->next;
+			return;
+		}
+	}
+
+	/*if (p == n || l->length == 1) {
+		if (p == n) {
+			l->length = l->length - 1;
+			if (l->length > 0) {
+				l->head = p->next;
+			}
+		}
+		return;
+	}*/
+
+
+	/*if (p == n) {
+		l->length = l->length - 1;
+		if (l->length != 0) {
+			l->head = p->next;
+		}
+		return;
+	}
+	if (l->length == 0) {
+		return;
+	}*/
+
+	while (p->next != l->tail) {
+		if (p->next == n) {
+			p->next = n->next;
+			l->length = l->length - 1;
+			return;
+		}
+		p = p->next;
+	}
+	if (p->next == n) {
+		l->tail = p;
+		l->length = l->length - 1;
+	}
+	return;
 }
