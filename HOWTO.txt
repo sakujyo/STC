@@ -1,0 +1,7 @@
+mingw(gcc, make, flex, bison, ...etc) の導入
+
+http://sourceforge.net/projects/mingw/files/
+の
+Download mingw-get-inst-20111118.exe (591.9 kB)
+からダウンロードしてインストーラを起動してください。
+
