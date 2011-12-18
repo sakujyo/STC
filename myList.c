@@ -14,6 +14,7 @@ Node *newNodeInt(int val)
 	n->val = p;
 	return n;
 }
+
 Node *newNodeDouble(double val)
 {
 	Node *n;
@@ -25,6 +26,7 @@ Node *newNodeDouble(double val)
 	n->val = p;
 	return n;
 }
+
 Node *newNodeString(char *s)
 {
 	Node *n;
@@ -36,6 +38,26 @@ Node *newNodeString(char *s)
 	n->val = p;
 	return n;
 }
+
+Node *newNodeMul(void)
+{
+	Node *n;
+	//int *p;
+	n = malloc(sizeof(Node));
+	//p = malloc(sizeof(int));
+	n->type = MUL;
+	//n->val = p;
+	return n;
+}
+
+Node *newNodeFunc(void)
+{
+	Node *n;
+	n = malloc(sizeof(Node));
+	n->type = FUNCCALL;
+	return n;
+}
+
 Node *newNodeList(List *l)
 {
 	Node *n;
@@ -49,6 +71,7 @@ Node *newNodeList(List *l)
 	n->val = p;
 	return n;
 }
+
 void NodePrint(Node *n)
 {
 	switch (n->type) {
@@ -64,11 +87,22 @@ void NodePrint(Node *n)
 		case LIST:
 			printf("LIST:length %d", ((List *)(n->val))->length);
 			break;
+		case MUL:
+			printf("*");
+			break;
+		case FUNCCALL:
+			printf("FUNCCALL");
+			break;
 		default:
 			break;
 	}
 }
-void destructNode(Node *n){	free(n);}
+
+void destructNode(Node *n)
+{
+	free(n);
+}
+
 List *newList(void)
 {
 	List *l;
@@ -76,7 +110,13 @@ List *newList(void)
 	l->length = 0;
 	return l;
 }
-void destructList(List *l){	free(l);	/* TODO: destruct Nodes */}
+
+void destructList(List *l)
+{
+	free(l);
+	/* TODO: destruct Nodes */
+}
+
 void ListAdd(List *l, Node *n)
 {
 	if (l->length == 0) {
@@ -106,6 +146,7 @@ void ListPrint(List *l)
 	}
 	printf(")\n");
 }
+
 void ListRemove(List *l, Node *n)
 {
 	//ƒŠƒXƒgl ‚©‚çÅ‰‚ÉŒ©‚Â‚©‚Á‚½ n ‚ð‚Æ‚è‚Ì‚¼‚­
@@ -149,6 +190,7 @@ void ListRemove(List *l, Node *n)
 		return;
 	}*/
 
+	//2”Ô–ÚˆÈ~‚Ì—v‘f‚Ì”äŠr
 	while (p->next != l->tail) {
 		if (p->next == n) {
 			p->next = n->next;

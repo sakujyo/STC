@@ -1,4 +1,9 @@
 enum NodeType {
+	ADD,		// +
+	MUL,		// *
+	FUNCCALL,
+	ASSIGN,		// =
+	VAR,
 	INT,
 	DOUBLE,
 	STRING,
@@ -23,6 +28,8 @@ Node *newNodeInt(int val);
 Node *newNodeDouble(double val);
 Node *newNodeString(char *s);
 Node *newNodeList(List *s);
+Node *newNodeMul(void);
+Node *newNodeFunc(void);
 void NodePrint(Node *n);
 void destructNode(Node *n);
 List *newList(void);
