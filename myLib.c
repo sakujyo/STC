@@ -1,6 +1,23 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
 #include "myLib.h"
 int stack[4096];
 int sp = 0;
+
+void printLnInt(int v)
+{
+	printf("%d\n", v);
+}
+
+char *copystr(const char *src)
+{
+	char *p;
+	p = malloc(strlen(src) + 1);
+	strcpy(p, src);
+	return p;
+}
 
 void funcCall(int func(), int args)
 {

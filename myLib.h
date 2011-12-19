@@ -6,3 +6,5 @@ int pop(void);
 void sadd(void);
 void smul(void);
 void funcCall(int func(), int args);
+char *copystr(const char *src);
+void printLnInt(int v);

@@ -3,8 +3,8 @@ enum NodeType {
 	MUL,		// *
 	FUNCCALL,
 	ASSIGN,		// =
-	VAR,
-	INT,
+	VAR,		// êÈåæ
+	INTEGER,
 	DOUBLE,
 	STRING,
 	LIST

@@ -10,7 +10,7 @@ Node *newNodeInt(int val)
 	n = malloc(sizeof(Node));
 	p = malloc(sizeof(int));
 	*p = val;
-	n->type = INT;
+	n->type = INTEGER;
 	n->val = p;
 	return n;
 }
@@ -75,7 +75,7 @@ Node *newNodeList(List *l)
 void NodePrint(Node *n)
 {
 	switch (n->type) {
-		case INT:
+		case INTEGER:
 			printf("%d", *((int *)(n->val)));
 			break;
 		case DOUBLE:
